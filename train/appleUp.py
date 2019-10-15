@@ -12,7 +12,7 @@ class AppleUpdate:
             index_a = snake.sum_apple
             snake.apple_position = self.all_apple[index_a][:]
         except:
-            self.all_apple.append([rd.randrange(0, 1200, 50), rd.randrange(0, 1200, 50)])
+            self.all_apple.append([rd.randrange(0, 25), rd.randrange(0, 25)])
             snake.apple_position = self.all_apple[index_a][:]
 
         return snake

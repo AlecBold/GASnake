@@ -14,7 +14,7 @@ class Snake:
         self.coordinate_next_step = snake_position[0]
 
         while True:
-            self.apple_position = [rd.randrange(0, 1200, 50), rd.randrange(0, 1200, 50)]
+            self.apple_position = [rd.randrange(0, 25), rd.randrange(0, 25)]
             if self.apple_position not in self.snake_position:
                 break
 
@@ -38,13 +38,13 @@ class Snake:
         block_left = 0
         block_down = 0
 
-        if self.snake_position[0][0] + 50 > 1150 or [self.snake_position[0][0] + 50, self.snake_position[0][1]] in self.snake_position[1:]:
+        if self.snake_position[0][0] + 1 > 24 or [self.snake_position[0][0] + 1, self.snake_position[0][1]] in self.snake_position[1:]:
             block_right = 1
-        if self.snake_position[0][0] - 50 < 0 or [self.snake_position[0][0] - 50, self.snake_position[0][1]] in self.snake_position[1:]:
+        if self.snake_position[0][0] - 1 < 0 or [self.snake_position[0][0] - 1, self.snake_position[0][1]] in self.snake_position[1:]:
             block_left = 1
-        if self.snake_position[0][1] + 50 > 1150 or [self.snake_position[0][0], self.snake_position[0][1] + 50] in self.snake_position[1:]:
+        if self.snake_position[0][1] + 1 > 24 or [self.snake_position[0][0], self.snake_position[0][1] + 1] in self.snake_position[1:]:
             block_down = 1
-        if self.snake_position[0][1] - 50 < 0 or [self.snake_position[0][0], self.snake_position[0][1] - 50] in self.snake_position[1:]:
+        if self.snake_position[0][1] - 1 < 0 or [self.snake_position[0][0], self.snake_position[0][1] - 1] in self.snake_position[1:]:
             block_up = 1
 
         return block_right, block_up, block_left, block_down
@@ -55,13 +55,13 @@ class Snake:
         block_L = 0
         block_D = 0
 
-        if [self.snake_position[0][0] + 50, self.snake_position[0][1]] in self.snake_position[1:]:
+        if [self.snake_position[0][0] + 1, self.snake_position[0][1]] in self.snake_position[1:]:
             block_R = 1
-        if [self.snake_position[0][0] - 50, self.snake_position[0][1]] in self.snake_position[1:]:
+        if [self.snake_position[0][0] - 1, self.snake_position[0][1]] in self.snake_position[1:]:
             block_L = 1
-        if [self.snake_position[0][0], self.snake_position[0][1] + 50] in self.snake_position[1:]:
+        if [self.snake_position[0][0], self.snake_position[0][1] + 1] in self.snake_position[1:]:
             block_D = 1
-        if [self.snake_position[0][0], self.snake_position[0][1] - 50] in self.snake_position[1:]:
+        if [self.snake_position[0][0], self.snake_position[0][1] - 1] in self.snake_position[1:]:
             block_U = 1
 
         return block_R, block_U, block_L, block_D
@@ -72,22 +72,22 @@ class Snake:
         dirL = 0
         dirD = 0
 
-        if [self.snake_position[1][0] + 50, self.snake_position[1][1]] == self.snake_position[0]:
+        if [self.snake_position[1][0] + 1, self.snake_position[1][1]] == self.snake_position[0]:
             dirR = 1
-        elif [self.snake_position[1][0] - 50, self.snake_position[1][1]] == self.snake_position[0]:
+        elif [self.snake_position[1][0] - 1, self.snake_position[1][1]] == self.snake_position[0]:
             dirL = 1
-        elif [self.snake_position[1][0], self.snake_position[1][1] + 50] == self.snake_position[0]:
+        elif [self.snake_position[1][0], self.snake_position[1][1] + 1] == self.snake_position[0]:
             dirD = 1
-        elif [self.snake_position[1][0], self.snake_position[1][1] - 50] == self.snake_position[0]:
+        elif [self.snake_position[1][0], self.snake_position[1][1] - 1] == self.snake_position[0]:
             dirU = 1
 
         return dirR, dirU, dirL, dirD
 
     def distance_to_wall(self):
-        wall_direction_vector_R = abs(1200 - self.snake_position[0][0])
+        wall_direction_vector_R = abs(25 - self.snake_position[0][0])
         wall_direction_vector_U = abs(0 - self.snake_position[0][1])
         wall_direction_vector_L = abs(0 - self.snake_position[0][0])
-        wall_direction_vector_D = abs(1200 - self.snake_position[0][1])
+        wall_direction_vector_D = abs(25 - self.snake_position[0][1])
 
         if wall_direction_vector_R > wall_direction_vector_U:  # compute distance to upper right corner
             wall_direction_vector_RU = wall_direction_vector_U / math.cos(45)
@@ -110,10 +110,11 @@ class Snake:
             wall_direction_vector_LD = wall_direction_vector_L / math.cos(45)
 
         # Normalize distance for tail
-        wall_direction_vector_R_norm = 1 - wall_direction_vector_R / 1200
-        wall_direction_vector_U_norm = 1 - wall_direction_vector_U / 1200
-        wall_direction_vector_L_norm = 1 - wall_direction_vector_L / 1200
-        wall_direction_vector_D_norm = 1 - wall_direction_vector_D / 1200
+        wall_direction_vector_R_norm = 1 - wall_direction_vector_R / 25
+        wall_direction_vector_U_norm = 1 - wall_direction_vector_U / 25
+        wall_direction_vector_L_norm = 1 - wall_direction_vector_L / 25
+        wall_direction_vector_D_norm = 1 - wall_direction_vector_D / 25
+        # NEED TO CHANGE SCALES (DON'T FORGET)
         wall_direction_vector_RU_norm = 1 - wall_direction_vector_RU / 1700
         wall_direction_vector_RD_norm = 1 - wall_direction_vector_RD / 1700
         wall_direction_vector_LU_norm = 1 - wall_direction_vector_LU / 1700
@@ -171,16 +172,16 @@ class Snake:
 
         for i in range(1, len(self.snake_position)):
             if self.snake_position[0][0] - self.snake_position[i][0] < 0 and self.snake_position[0][1] == self.snake_position[i][1] and checkR:  #Right check
-                tail_direction_vector_R = 1 - abs(self.snake_position[0][0] - self.snake_position[i][0]) / 1200
+                tail_direction_vector_R = 1 - abs(self.snake_position[0][0] - self.snake_position[i][0]) / 25
                 checkR = False
             if self.snake_position[0][0] - self.snake_position[i][0] > 0 and self.snake_position[0][1] == self.snake_position[i][1] and checkL:  #Left check
-                tail_direction_vector_L = 1 - abs(self.snake_position[0][0] - self.snake_position[i][0]) / 1200
+                tail_direction_vector_L = 1 - abs(self.snake_position[0][0] - self.snake_position[i][0]) / 25
                 checkL = False
             if self.snake_position[0][1] - self.snake_position[i][1] < 0 and self.snake_position[0][0] == self.snake_position[i][0] and checkD:  #Down check
-                tail_direction_vector_D = 1 - abs(self.snake_position[0][0] - self.snake_position[i][0]) / 1200
+                tail_direction_vector_D = 1 - abs(self.snake_position[0][0] - self.snake_position[i][0]) / 25
                 checkD = False
             if self.snake_position[0][1] - self.snake_position[i][1] > 0 and self.snake_position[0][0] == self.snake_position[i][0] and checkU:  #Up check
-                tail_direction_vector_U = 1 - abs(self.snake_position[0][0] - self.snake_position[i][0]) / 1200
+                tail_direction_vector_U = 1 - abs(self.snake_position[0][0] - self.snake_position[i][0]) / 25
                 checkU = False
 
         return tail_direction_vector_R, tail_direction_vector_U, tail_direction_vector_L, tail_direction_vector_D
@@ -202,13 +203,13 @@ class Snake:
         predicted_direction = np.argmax(self.output)
 
         if predicted_direction == 1:  # Right
-            self.coordinate_next_step = (self.snake_position[0] + np.array([50, 0])).tolist()
+            self.coordinate_next_step = (self.snake_position[0] + np.array([1, 0])).tolist()
         elif predicted_direction == 0:  # Left
-            self.coordinate_next_step = (self.snake_position[0] + np.array([-50, 0])).tolist()
+            self.coordinate_next_step = (self.snake_position[0] + np.array([-1, 0])).tolist()
         elif predicted_direction == 3:  # Down
-            self.coordinate_next_step = (self.snake_position[0] + np.array([0, 50])).tolist()
+            self.coordinate_next_step = (self.snake_position[0] + np.array([0, 1])).tolist()
         elif predicted_direction == 2:  # Up
-            self.coordinate_next_step = (self.snake_position[0] + np.array([0, -50])).tolist()
+            self.coordinate_next_step = (self.snake_position[0] + np.array([0, -1])).tolist()
 
     def calcFitness(self):
         if len(self.snake_position) < 10:
@@ -225,7 +226,7 @@ class Snake:
 
             # Generate new random apple
             while True:
-                self.apple_position = [rd.randrange(0, 1200, 50), rd.randrange(0, 1000, 50)]
+                self.apple_position = [rd.randrange(0, 25), rd.randrange(0, 25)]
                 if self.apple_position not in self.snake_position:
                     break
             self.snake_position.append(self.snake_position[-1])

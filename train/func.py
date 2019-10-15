@@ -44,7 +44,7 @@ def outputData(input_data, weights):
 
 # Check if snake smash in the wall
 def collision_with_wall(head_snake):
-    if head_snake[0] < 0 or head_snake[0] > 1150 or head_snake[1] < 0 or head_snake[1] > 1150:
+    if head_snake[0] < 0 or head_snake[0] > 24 or head_snake[1] < 0 or head_snake[1] > 24:
         return 1
     else:
         return 0

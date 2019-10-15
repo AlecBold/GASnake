@@ -7,19 +7,15 @@ import json
 from func import *
 from population import *
 from snakes import *
-from inital import *
+from initial import *
 
 
 # ----------------------------------------------PLAY--------------------------------------------------
 
 
 # Initialize data for start
-snake_position = [[600, 600], [600, 650], [600, 700], [600, 750]]
+snake_position = [[12, 12], [12, 13], [12, 14], [12, 15]]
 population_num = 1500
-
-display_width = 1200
-display_height = 1200
-
 
 # Start Training
 def play(snake_position, population_num):
