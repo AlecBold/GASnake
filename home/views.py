@@ -3,4 +3,4 @@ from django.shortcuts import render
 # Create your views here.
 
 def blog(request):
-    return render(request, 'home/index.html')
+    return render(request, 'home/snk.html')
