@@ -5,9 +5,10 @@ import json
 
 # Importing local modules
 from func import *
-from population import *
-from snakes import *
-from initial import *
+from Population import *
+from Snake import *
+from Initialize import *
+from getdata import queryForData
 
 
 # ----------------------------------------------PLAY--------------------------------------------------
@@ -27,7 +28,7 @@ def play(snake_position, population_num):
 
         # Initialize snakes
         initClass = Initialize(snake_position, population_num, weights)
-        population = initClass.population
+        population = initClass.get_pop()
 
 
         # Initialize visualize snake
@@ -39,16 +40,16 @@ def play(snake_position, population_num):
             # Visualize snake
             if Alive:
 
-                # Transmission
+                # Check for query
                 coordData = {'snake': visualize_snake.snake_position, 'apple': visualize_snake.apple_position}
-                with open("snake_front.json", "w") as frontsnake:
-                    json.dump(coordData, frontsnake)
+                queryForData(coordData)
 
                 visualize_snake.calcOutput()
                 visualize_snake.nextStep()
                 visualize_snake.generate()
                 visualize_snake.calcInput()
-                if is_direction_blocked(visualize_snake.snake_position, visualize_snake.coordinate_next_step) == 1 or visualize_snake.stayAlive == visualize_snake.lifetime:
+
+                if (is_direction_blocked(visualize_snake.snake_position, visualize_snake.coordinate_next_step) == 1) or (visualize_snake.stayAlive == visualize_snake.lifetime):
                     Alive = False
 
             # All population
@@ -62,7 +63,7 @@ def play(snake_position, population_num):
                     population[i].generate()
                     population[i].calcInput()
 
-                    if is_direction_blocked(population[i].snake_position, population[i].coordinate_next_step) == 1 or population[i].stayAlive == population[i].lifetime:
+                    if (is_direction_blocked(population[i].snake_position, population[i].coordinate_next_step) == 1) or (population[i].stayAlive == population[i].lifetime):
                         dead_snakes.append(population[i])
                     else:
                         new_population.append(population[i])
@@ -70,6 +71,7 @@ def play(snake_position, population_num):
                 population = new_population[:]
 
         pop = Population(num_parents=150, population=dead_snakes, mutation_rate=0.2)
+        pop.exec_genetic_algorithm()
         weights = pop.new_pop()
         best_weights = list(pop.best_weights)
 

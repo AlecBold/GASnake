@@ -13,7 +13,7 @@ def weights_initialize():
     w_hidden2 = 2 * np.random.random((n_hidden1, n_hidden2)) - 1
     w_output = 2 * np.random.random((n_hidden2, n_output)) - 1
     w_arr = [w_hidden1, w_hidden2, w_output]
-    return list(w_arr)
+    return w_arr[:]
 
 
 # Sigmoid function
@@ -23,17 +23,9 @@ def sigmoid(x, deriv = False):
     return 1 / (1 + np.exp(-x))
 
 
-# TanH
-def tanH(x, deriv = False):
-    if deriv == True:
-        return 1 - (2/(1+np.exp(-2*x)) - 1)**2
-    else:
-        return 2 / (1+np.exp(-2*x)) -1
-
-
 # Calculate output
 def outputData(input_data, weights):
-    arr_layers = list([input_data])
+    arr_layers = [input_data[:]]
 
     for i in range(len(weights)):
         layer = sigmoid(np.dot(arr_layers[i], weights[i]))
