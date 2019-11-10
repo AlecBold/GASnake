@@ -19,6 +19,8 @@ const UNITS = {
     updateRate: 1000 / 10,
 };
 
+const SNAKE_DATA_URL = '/coords.json'
+
 window.addEventListener('load', () => {
     const screen = document.querySelector('#screen');
     const display = new Display(screen, UNITS.snakeSize, UNITS.appleSize,  UNITS.maxCord);
@@ -40,7 +42,7 @@ window.addEventListener('load', () => {
     function update() {
         if(dataIndex > data.length) {
             engine.stop();
-            getData().then(newData => {
+            getData(SNAKE_DATA_URL).then(newData => {
                 data = newData;
                 dataIndex = 0;
                 engine.start();
@@ -58,7 +60,7 @@ window.addEventListener('load', () => {
     }
 
     (async function init() {
-        data = await getData();
+        data = await getData(SNAKE_DATA_URL);
         engine = new Engine(UNITS.updateRate, update, render);
 
         resize(); 
