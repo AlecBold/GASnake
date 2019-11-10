@@ -1,12 +1,14 @@
 (() => {
     class Display {
-        constructor(screen, snakeSize = 15, appleSize = 10, maxCord) {
-            this.canvas = screen;
-            this.ctx = screen.getContext('2d');
+        constructor({canvas, snakeSize, appleSize, maxXY, dpr}) {
+            this.canvas = canvas;
+            this.ctx = canvas.getContext('2d');
 
-            this.maxCord = maxCord;
+            this.maxCord = maxXY; 
             this.snakeSize = snakeSize;
             this.appleSize = appleSize;
+
+            this.ctx.scale(dpr, dpr);
         }
 
         interpolate(coords) {

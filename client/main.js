@@ -3,14 +3,15 @@ const Display = window.display;
 const getData = window.utils.getData;
 
 const COLOR = {
-    snake: 'white',
-    apple: 'red',
-    background: 'grey',
+    snake: '#eeeeee',
+    apple: '#d65a31',
+    background: '#393e46',
 };
 
 const UNITS = {
-    ratio: 1,
-    maxCord: 25,
+    dpr:  window.devicePixelRatio || 1,
+    aspectRatio: 1,
+    maxXY: 25,
     padding: 30,
 
     snakeSize: 15,
@@ -19,11 +20,23 @@ const UNITS = {
     updateRate: 1000 / 10,
 };
 
-const SNAKE_DATA_URL = '/coords.json'
+const DISPLAY_UNITS = {
+    dpr:  window.devicePixelRatio || 1,
+    aspectRatio: 1,
+    maxXY: 25,
+    snakeSize: 15,
+    appleSize: 15,
+}
+
+const SNAKE_DATA_URL = '/coords.json';
+
+// TODO: render via buffer (solve hight dpr problem)
+// TODO: make snake & apple size scalable
+// TODO: error handling
 
 window.addEventListener('load', () => {
-    const screen = document.querySelector('#screen');
-    const display = new Display(screen, UNITS.snakeSize, UNITS.appleSize,  UNITS.maxCord);
+    const canvas = document.querySelector('#screen');
+    const display = new Display({canvas: canvas, ...UNITS});
 
     let data;
     let engine;
@@ -56,7 +69,7 @@ window.addEventListener('load', () => {
         const width = document.documentElement.clientWidth - UNITS.padding;
         const height = document.documentElement.clientHeight - UNITS.padding;
 
-        display.resize(width, height, UNITS.ratio);
+        display.resize(width, height, UNITS.aspectRatio);
     }
 
     (async function init() {
