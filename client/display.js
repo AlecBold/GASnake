@@ -11,7 +11,7 @@
 
         interpolate(coords) {
             const coordsRatio = this.canvas.width / this.maxCord;
-            console.log('ratio', coordsRatio, this.canvas.width, this.maxCord);
+
             return coords.map(coord => coord * coordsRatio);
         }
 
