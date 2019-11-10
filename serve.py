@@ -27,14 +27,13 @@ class Handler(BaseHTTPRequestHandler):
 
         try:
             if file_data:
-                print(self.path, file_data)
                 file_path = curdir + sep + file_data['path'].replace('/', sep)
                 file_type = file_data['type']
 
                 self.send_response(200)
                 self.send_header('Content-type', file_type)
                 self.end_headers()
-                print("FILE PATH : ", file_path)
+
                 with open(file_path, 'rb') as file:
                     self.wfile.write(file.read())
 
