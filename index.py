@@ -1,9 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from threading import Thread
-from .train import snake_processing
 import time
-
 
 class MyThread(Thread):
     def __init__(self, go):
@@ -33,5 +29,5 @@ def blog(request):
     return render(request, 'GASnake/index.html')
 
 
-my_thread = MyThread(True)
-my_thread.start()
+# my_thread = MyThread(True)
+# my_thread.start()
