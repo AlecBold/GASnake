@@ -20,8 +20,7 @@
             this.ctx.fillRect(x,y, size, size)
         }
 
-        snake(coords) {
-            const color = 'white';
+        snake(coords, color) {
             const size = this.snakeSize;
 
             coords.forEach(coordinates => {
@@ -31,9 +30,8 @@
             })
         }
 
-        apple(coords) {
+        apple(coords, color) {
             const [x, y] = this.interpolate(coords);
-            const color = 'red';
             const size = this.appleSize;
 
             this.drawRect(x, y, size, color);

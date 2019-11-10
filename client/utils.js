@@ -18,9 +18,7 @@
             ];
         }
 
-        const data = await fetch(path).then(data => data.json());
-
-        return JSON.stringify(data);
+        return fetch(path).then(data => data.json());
     }
 
     window.utils = {
