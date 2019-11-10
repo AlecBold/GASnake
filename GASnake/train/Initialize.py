@@ -1,7 +1,7 @@
 # -------------------------------------------INITIALIZE-----------------------------------------------
 
 # Importing local files
-from Snake import *
+from .Snake import *
 
 
 class Initialize:
@@ -24,4 +24,7 @@ class Initialize:
     def update(self):
         for i in range(self.pop_num):
             self.population.append(Snake(self.snake_position, self.weights[i][:]))
+
+    def get_pop(self):
+        return self.population[:]
 

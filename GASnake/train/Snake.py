@@ -6,7 +6,8 @@ import math
 import numpy as np
 
 # Importing local modules
-from func import *
+from .func import *
+
 
 class Snake:
     def __init__(self, snake_position, weights):
@@ -80,7 +81,6 @@ class Snake:
 
         return dirR, dirU, dirL, dirD
 
-
     def distance_to_wall(self):
         wall_direction_vector_R = abs(25 - self.snake_position[0][0])
         wall_direction_vector_U = abs(0 - self.snake_position[0][1])
@@ -121,7 +121,6 @@ class Snake:
 
         return wall_direction_vector_R_norm, wall_direction_vector_U_norm, wall_direction_vector_L_norm, wall_direction_vector_D_norm, wall_direction_vector_RU_norm, wall_direction_vector_RD_norm, wall_direction_vector_LU_norm, wall_direction_vector_LD_norm
 
-
     def direction_to_apple(self):
         apple_direction_vector_R = 0
         apple_direction_vector_U = 0
@@ -131,7 +130,6 @@ class Snake:
         apple_direction_vector_RD = 0
         apple_direction_vector_LU = 0
         apple_direction_vector_LD = 0
-
 
         # Check if apple exist in 8 directions relative to head
 
