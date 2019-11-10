@@ -1,56 +1,19 @@
-<html>
-    <head></head>
-
-    <body>
-        <div>
-            <h1>EXECUTED BY JS</h1>
-        </div>
-        <button class="start">GET COORDINATES</button>
-        <button class="stop">STOP REQUEST</button>
-        <p class="text"></p>
- 
-        <script>
-            window.addEventListener('load', () => {
-                const COORDS_PATH = '/coordinates_snake.json';
-                /**
-                 * @QUERY_SELECTOR @see https://developer.mozilla.org/ru/docs/Web/API/Document/querySelector
-                 */
-                const paragraph = document.querySelector('.text');
-                const start = document.querySelector('.start');
-                const stop =  document.querySelector('.stop');
-                
-                let timerId;
-
-                const writeToParagraph = text => paragraph.innerHTML = text;
-
-                /**
-                 * @FETCH_API @see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
-                 */
-                const refreshData = () => fetch(COORDS_PATH)
-                    .then(response => response.json())
-                    .then(jsonData => {
-                        const responseStr = JSON.stringify(jsonData);
-                        writeToParagraph(responseStr);
-                    })
-                    .catch(error => {
-                        writeToParagraph(error);
-                        console.error(error);
-                    });
-
-
-                start.addEventListener('click', () => {
-                    /**
-                     * @INTERVALS @see https://developer.mozilla.org/ru/docs/Web/API/WindowOrWorkerGlobalScope/setInterval
-                     */
-                    if(timerId) clearInterval(timerId);
-
-                    timerId = setInterval(refreshData, 2000);
-                });
-
-                stop.addEventListener('click', () => {
-                    if(timerId) clearInterval(timerId);
-                })
-            });
-        </script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>SNAKE</title>
+</head>
+<body>
+    <main class="screen-container">
+        <canvas id="screen"></canvas>
+    </main>
+    <script src="./display.js"></script>
+    <script src="./engine.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./main.js"></script>
+</body>
 </html>

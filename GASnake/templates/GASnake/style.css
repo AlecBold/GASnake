@@ -1,0 +1,23 @@
+html, body {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: gray;
+}
+
+.screen-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+}
+
+#screen {
+    border: 1px solid brown;
+}
