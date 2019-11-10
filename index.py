@@ -17,12 +17,12 @@ def data(request):
 
     while not_exist:
         try:
-            open("GASnake/templates/GASnake/coordinates_snake.json")
+            open("home/Documents/sites/GASnake/data/coords.json")
             not_exist = False
         except FileNotFoundError:
             time.sleep(1/4)
 
-    return render(request, 'GASnake/coordinates_snake.json')
+    return render(request, 'home/Documents/sites/GASnake/data/coords.json')
 
 
 def blog(request):

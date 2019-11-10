@@ -83,12 +83,12 @@ class PlaySnake:
             self.delete_file()
 
     def create_file(self):
-        open("GASnake/templates/GASnake/coordinates_snake.json", 'w+')
+        open('home/Documents/sites/GASnake/data/coords.json', 'w+')
 
     def delete_file(self):
-        os.remove("GASnake/templates/GASnake/coordinates_snake.json")
+        os.remove('home/Documents/sites/GASnake/data/coords.json')
 
     def write_to_json(self):
-        with open('GASnake/templates/GASnake/coordinates_snake.json', 'w') as file:
+        with open('home/Documents/sites/GASnake/data/coords.json', 'w') as file:
             json.dump(self.coordData, file)
 
