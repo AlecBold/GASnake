@@ -5,7 +5,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from index import Model
 
 PORT_NUMBER = 8000
-SERVER_ADDRESS = ("gasnake.herokuapp.com", PORT_NUMBER)
+SERVER_ADDRESS = ("localhost", PORT_NUMBER)
 
 DUMB_FILE_MAP = {
     '/'           : {'path': 'client/index.html', 'type': 'text/html'},
