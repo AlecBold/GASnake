@@ -3,7 +3,9 @@
 # Importing Libraries
 import json
 import time
+import datetime
 import os
+import pymongo
 
 # Importing local modules
 from .func import *
@@ -15,7 +17,27 @@ from .Initialize import *
 # Start Training
 class PlaySnake:
     def __init__(self):
-        self.coordData = None
+        self.direct = './data/coords.json'
+        self.access_to_mongodb()
+
+    def create_file(self):
+        open(self.direct, 'w+')
+
+    def delete_file(self):
+        os.remove(self.direct)
+
+    def write_to_json(self):
+        with open(self.direct, 'w') as file:
+            json.dump(self.coordData, file)
+
+    def access_to_mongodb(self):
+        client = pymongo.MongoClient("mongodb+srv://AlexMongoDB:Takemetoyoureleader2291773@cluster0-p5ad5.mongodb.net/test?retryWrites=true&w=majority")
+        self.db = client.dataSnake
+
+    def save_weights_in_db(self, weights):
+        weights = [arr.tolist() for arr in weights]
+        doc = {'weights': weights, 'date': datetime.datetime.now()}
+        self.db.data_weights.insert_one(doc)
 
     def execute(self):
         snake_position = [[12, 12], [12, 13], [12, 14], [12, 15]]
@@ -76,19 +98,11 @@ class PlaySnake:
 
             self.create_file()
             self.write_to_json()
+
             pop = Population(num_parents=150, population=dead_snakes, mutation_rate=0.2)
             pop.exec_genetic_algorithm()
             weights = pop.new_pop()
             best_weights = list(pop.best_weights)
+
+            self.save_weights_in_db(best_weights)
             self.delete_file()
-
-    def create_file(self):
-        open('home/Documents/sites/GASnake/data/coords.json', 'w+')
-
-    def delete_file(self):
-        os.remove('home/Documents/sites/GASnake/data/coords.json')
-
-    def write_to_json(self):
-        with open('home/Documents/sites/GASnake/data/coords.json', 'w') as file:
-            json.dump(self.coordData, file)
-

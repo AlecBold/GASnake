@@ -2,9 +2,10 @@
 
 from os import curdir, sep
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from index import Model
 
 PORT_NUMBER = 3000
-SERVER_ADDRES = ('localhost', PORT_NUMBER)
+SERVER_ADDRESS = ('localhost', PORT_NUMBER)
 
 DUMB_FILE_MAP = {
     '/'           : {'path': 'client/index.html', 'type': 'text/html'},
@@ -19,6 +20,7 @@ DUMB_FILE_MAP = {
     '/utils.js'   : {'path': 'client/utils.js',   'type': 'application/javascript'},
     '/favicon.ico': {'path': 'client/favicon/favicon.ico', 'type': 'image/x-icon'},
 }
+
 
 class Handler(BaseHTTPRequestHandler):
 
@@ -44,11 +46,15 @@ class Handler(BaseHTTPRequestHandler):
 
 
 try:
-    server = HTTPServer(SERVER_ADDRES, Handler)
+    server = HTTPServer(SERVER_ADDRESS, Handler)
+    print('Im here')
+    model = Model()
     print('Started httpserver on port ', PORT_NUMBER)
 
+    model.run_process()
     server.serve_forever()
 
 except KeyboardInterrupt:
     print('^C received, shutting down the web server')
+    model.stop_process()
     server.socket.close()

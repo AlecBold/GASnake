@@ -1,33 +1,39 @@
-from threading import Thread
+from multiprocessing import Process
+from model import snake_processing
 import time
 
-class MyThread(Thread):
-    def __init__(self, go):
-        Thread.__init__(self)
-        self.request = None
-        self.count = 0
-        self.application_server = snake_processing.PlaySnake()
 
-    def run(self):
-        self.application_server.execute()
+class Model:
+    def __init__(self):
+        self.proc = Process(target=snake_processing.PlaySnake().execute)
 
+    def run_process(self):
+        print("Start model")
+        self.proc.start()
 
-def data(request):
-    not_exist = True
-
-    while not_exist:
-        try:
-            open("home/Documents/sites/GASnake/data/coords.json")
-            not_exist = False
-        except FileNotFoundError:
-            time.sleep(1/4)
-
-    return render(request, 'home/Documents/sites/GASnake/data/coords.json')
+    def stop_process(self):
+        self.proc.join()
 
 
-def blog(request):
-    return render(request, 'GASnake/index.html')
+def common():
+    print("I AM HERE")
+#
+# def data(request):
+#     not_exist = True
+#
+#     while not_exist:
+#         try:
+#             open("home/Documents/sites/GASnake/data/coords.json")
+#             not_exist = False
+#         except FileNotFoundError:
+#             time.sleep(1/4)
+#
+#     return render(request, 'home/Documents/sites/GASnake/data/coords.json')
+#
+#
+# def blog(request):
+#     return render(request, 'GASnake/index.html')
 
 
-# my_thread = MyThread(True)
-# my_thread.start()
+# model = Model()
+# model.run_process()
