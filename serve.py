@@ -27,6 +27,7 @@ DUMB_FILE_MAP = {
 class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
+        print('getreq')
         file_data = DUMB_FILE_MAP.get(self.path, False)
         print('GET REQUEST')
         try:
