@@ -1,1 +1,1 @@
-web: serve --log-file -
+web: gunicorn serve --log-file -
