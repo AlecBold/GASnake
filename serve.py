@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#! /usr/bin/python3
 
 from os import curdir, sep, environ
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from index import Model
 
 PORT_NUMBER = 8080
-SERVER_ADDRESS = ("", PORT_NUMBER)
+SERVER_ADDRESS = ("localhost", PORT_NUMBER)
 
 DUMB_FILE_MAP = {
     '/'           : {'path': 'client/index.html', 'type': 'text/html'},
@@ -18,7 +18,7 @@ DUMB_FILE_MAP = {
     '/engine.js'  : {'path': 'client/engine.js',  'type': 'application/javascript'},
     '/main.js'    : {'path': 'client/main.js',    'type': 'application/javascript'},
     '/utils.js'   : {'path': 'client/utils.js',   'type': 'application/javascript'},
-    #'/favicon.ico': {'path': 'client/favicon/favicon.ico', 'type': 'image/x-icon'},
+    '/favicon.ico': {'path': 'client/favicon/favicon.ico', 'type': 'image/x-icon'},
 }
 
 

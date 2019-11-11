@@ -15,6 +15,4 @@ class Model:
         self.proc.join()
 
 
-def common():
-    print("I AM HERE")
 
