@@ -4,7 +4,7 @@ from os import curdir, sep, environ
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from index import Model
 
-PORT_NUMBER = 80
+PORT_NUMBER = 8080
 SERVER_ADDRESS = ("localhost", PORT_NUMBER)
 
 DUMB_FILE_MAP = {
