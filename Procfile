@@ -1,1 +1,1 @@
-web: gunicorn serve --log-file -
+web: python3 serve.py
