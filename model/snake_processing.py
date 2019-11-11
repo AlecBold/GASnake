@@ -104,5 +104,5 @@ class PlaySnake:
             weights = pop.new_pop()
             best_weights = list(pop.best_weights)
 
-            self.save_weights_in_db(best_weights)
+            #self.save_weights_in_db(best_weights)
             self.delete_file()

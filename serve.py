@@ -51,13 +51,13 @@ class Handler(BaseHTTPRequestHandler):
 try:
     server = HTTPServer(SERVER_ADDRESS, Handler)
     print('Im here')
-    #model = Model()
+    model = Model()
     print('Started httpserver on port ', PORT_NUMBER)
 
-    #model.run_process()
+    model.run_process()
     server.serve_forever()
 
 except KeyboardInterrupt:
     print('^C received, shutting down the web server')
-    #model.stop_process()
+    model.stop_process()
     server.socket.close()
