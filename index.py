@@ -17,23 +17,4 @@ class Model:
 
 def common():
     print("I AM HERE")
-#
-# def data(request):
-#     not_exist = True
-#
-#     while not_exist:
-#         try:
-#             open("home/Documents/sites/GASnake/data/coords.json")
-#             not_exist = False
-#         except FileNotFoundError:
-#             time.sleep(1/4)
-#
-#     return render(request, 'home/Documents/sites/GASnake/data/coords.json')
-#
-#
-# def blog(request):
-#     return render(request, 'GASnake/index.html')
 
-
-# model = Model()
-# model.run_process()
