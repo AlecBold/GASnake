@@ -4,7 +4,7 @@ from os import curdir, sep, environ
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from index import Model
 
-PORT_NUMBER = 80
+PORT_NUMBER = 3000
 SERVER_ADDRESS = ("gasnake.herokuapp.com", PORT_NUMBER)
 
 DUMB_FILE_MAP = {
