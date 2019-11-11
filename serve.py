@@ -4,7 +4,7 @@ from os import curdir, sep
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from index import Model
 
-PORT_NUMBER = 8000
+PORT_NUMBER = 3000
 SERVER_ADDRESS = ("localhost", PORT_NUMBER)
 
 DUMB_FILE_MAP = {
@@ -18,7 +18,7 @@ DUMB_FILE_MAP = {
     '/engine.js'  : {'path': 'client/engine.js',  'type': 'application/javascript'},
     '/main.js'    : {'path': 'client/main.js',    'type': 'application/javascript'},
     '/utils.js'   : {'path': 'client/utils.js',   'type': 'application/javascript'},
-    '/favicon.ico': {'path': 'client/favicon/favicon.ico', 'type': 'image/x-icon'},
+    #'/favicon.ico': {'path': 'client/favicon/favicon.ico', 'type': 'image/x-icon'},
 }
 
 
@@ -26,7 +26,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         file_data = DUMB_FILE_MAP.get(self.path, False)
-
+        print('GET REQUEST')
         try:
             if file_data:
                 file_path = curdir + sep + file_data['path'].replace('/', sep)
