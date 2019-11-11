@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
-from os import curdir, sep
+from os import curdir, sep, environ
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from index import Model
 
-PORT_NUMBER = 3000
+PORT_NUMBER = environ['PORT']
 SERVER_ADDRESS = ("localhost", PORT_NUMBER)
 
 DUMB_FILE_MAP = {
