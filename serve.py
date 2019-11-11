@@ -6,7 +6,7 @@ from index import Model
 from socket import gethostbyname, gethostname
 
 IP = gethostbyname(gethostname())
-PORT_NUMBER = 5000
+PORT_NUMBER = environ["PORT", 8080]
 SERVER_ADDRESS = (IP, PORT_NUMBER)
 
 DUMB_FILE_MAP = {
