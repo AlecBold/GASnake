@@ -18,7 +18,7 @@ from .Initialize import *
 class PlaySnake:
     def __init__(self):
         self.direct = './data/coords.json'
-        self.access_to_mongodb()
+        #self.access_to_mongodb()
 
     def create_file(self):
         open(self.direct, 'w+')
@@ -73,7 +73,6 @@ class PlaySnake:
 
                     if (is_direction_blocked(visualize_snake.snake_position, visualize_snake.coordinate_next_step) == 1) \
                             or (visualize_snake.stayAlive == visualize_snake.lifetime):
-
                         Alive = False
 
                 # All population
@@ -99,7 +98,7 @@ class PlaySnake:
             self.create_file()
             self.write_to_json()
 
-            pop = Population(num_parents=150, population=dead_snakes, mutation_rate=0.2)
+            pop = Population(num_parents=250, population=dead_snakes, mutation_rate=0.25)
             pop.exec_genetic_algorithm()
             weights = pop.new_pop()
             best_weights = list(pop.best_weights)
