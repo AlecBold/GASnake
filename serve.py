@@ -4,6 +4,8 @@ from os import curdir, sep, environ
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from index import Model
 from socket import gethostbyname, gethostname
+from Abuse import Abuse
+
 
 IP = gethostbyname(gethostname())
 PORT_NUMBER = int(environ["PORT"])
@@ -27,9 +29,7 @@ DUMB_FILE_MAP = {
 class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        print('getreq')
         file_data = DUMB_FILE_MAP.get(self.path, False)
-        print('GET REQUEST')
         try:
             if file_data:
                 file_path = curdir + sep + file_data['path'].replace('/', sep)
@@ -50,11 +50,11 @@ class Handler(BaseHTTPRequestHandler):
 
 try:
     server = HTTPServer(SERVER_ADDRESS, Handler)
-    print('Im here')
     model = Model()
     print('Started httpserver on port ', PORT_NUMBER)
 
     model.run_process()
+    abuse = Abuse()
     server.serve_forever()
 
 except KeyboardInterrupt:

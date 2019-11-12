@@ -13,6 +13,3 @@ class Model:
 
     def stop_process(self):
         self.proc.join()
-
-
-
