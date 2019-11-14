@@ -18,7 +18,7 @@ from .Initialize import *
 class PlaySnake:
     def __init__(self):
         self.direct = './data/coords.json'
-        self.access_to_mongodb()
+        #self.access_to_mongodb()
 
     def create_file(self):
         open(self.direct, 'w+')
@@ -103,6 +103,6 @@ class PlaySnake:
             weights = pop.new_pop()
             best_weights = list(pop.best_weights)
 
-            self.save_weights_in_db(best_weights)
+            #self.save_weights_in_db(best_weights)
             self.delete_file()
 
