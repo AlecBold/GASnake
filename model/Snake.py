@@ -23,7 +23,7 @@ class Snake:
         if self.weights == 0:
             self.weights = weights_initialize()
 
-        self.stayAlive = 30
+        self.stayAlive = 100
         self.lifetime = 0
         self.sum_apple = 0
         self.fitness = 0
