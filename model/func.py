@@ -9,9 +9,9 @@ def weights_initialize():
     n_hidden1 = 8
     n_hidden2 = 8
     n_output = 4
-    w_hidden1 = 2 * np.random.random((n_input, n_hidden1)) - 1
-    w_hidden2 = 2 * np.random.random((n_hidden1, n_hidden2)) - 1
-    w_output = 2 * np.random.random((n_hidden2, n_output)) - 1
+    w_hidden1 = np.random.random((n_input, n_hidden1))
+    w_hidden2 = np.random.random((n_hidden1, n_hidden2))
+    w_output = np.random.random((n_hidden2, n_output))
     w_arr = [w_hidden1, w_hidden2, w_output]
     return w_arr[:]
 

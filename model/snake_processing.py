@@ -31,7 +31,7 @@ class PlaySnake:
             json.dump(self.coordData, file)
 
     def access_to_mongodb(self):
-        client = pymongo.MongoClient("mongodb+srv://AlexMongoDB:Takemetoyoureleader2291773@cluster0-p5ad5.mongodb.net/test?retryWrites=true&w=majority")
+        client = pymongo.MongoClient("mongodb+srv://AlexMongoDB:<password>@cluster0-p5ad5.mongodb.net/test?retryWrites=true&w=majority")
         self.db = client.dataSnake
 
     def save_weights_in_db(self, weights):
@@ -88,7 +88,6 @@ class PlaySnake:
 
                         if (is_direction_blocked(population[i].snake_position, population[i].coordinate_next_step) == 1) \
                                 or (population[i].stayAlive == population[i].lifetime):
-
                             dead_snakes.append(population[i])
                         else:
                             new_population.append(population[i])
