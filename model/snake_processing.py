@@ -7,6 +7,7 @@ import datetime
 import os
 import pymongo
 
+
 # Importing local modules
 #from .func import *
 from .Population import *
@@ -46,6 +47,9 @@ class PlaySnake:
         population_num = 1500
         weights = 0
         best_weights = 0
+
+        PORT_NUMBER = int(os.environ["PORT"])
+        print(f'Start model on process: {PORT_NUMBER}')
 
         while True:
             dead_snakes = []

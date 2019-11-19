@@ -2,7 +2,7 @@
 
 from os import curdir, sep, environ
 from http.server import HTTPServer, BaseHTTPRequestHandler
-#from index import Model
+import index
 from socket import gethostbyname, gethostname
 from Abuse import Abuse
 
@@ -50,15 +50,15 @@ class Handler(BaseHTTPRequestHandler):
 
 try:
     server = HTTPServer(SERVER_ADDRESS, Handler)
-    #model = Model()
+    model = index.Model()
     print('Started httpserver on port ', PORT_NUMBER)
 
-    #model.run_process()
+    model.run_process()
     abuse = Abuse()
     server.serve_forever()
 
 except KeyboardInterrupt:
     print('^C received, shutting down the web server')
-    #model.stop_process()
+    model.stop_process()
     server.socket.close()
     abuse.stop_thread()
