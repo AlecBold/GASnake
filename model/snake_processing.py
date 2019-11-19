@@ -19,6 +19,7 @@ class PlaySnake:
     def __init__(self):
         self.direct = './data/coords.json'
         self.generations = 0
+        self.coordData = []
         #self.access_to_mongodb()
 
     def create_file(self):
@@ -48,6 +49,10 @@ class PlaySnake:
 
         while True:
             dead_snakes = []
+
+            # Create json file and write coorddata to file
+            self.create_file()
+            self.write_to_json()
 
             # Initialize snakes
             initClass = Initialize(snake_position, population_num, weights)
@@ -94,9 +99,6 @@ class PlaySnake:
                             new_population.append(population[i])
 
                     population = new_population[:]
-
-            self.create_file()
-            self.write_to_json()
 
             pop = Population(num_parents=250, population=dead_snakes, mutation_rate=0.1)
             pop.exec_genetic_algorithm()

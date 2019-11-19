@@ -20,7 +20,7 @@ class Model:
 
 
 class Model:
-    
+
     def __init__(self):
         self.proc = snake_processing.PlaySnake()
         self.proc.execute()
