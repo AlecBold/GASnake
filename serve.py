@@ -15,7 +15,7 @@ DUMB_FILE_MAP = {
     '/'           : {'path': 'client/index.html', 'type': 'text/html'},
     '/index.html' : {'path': 'client/index.html', 'type': 'text/html'},
 
-    '/coords.json': {'path': 'data/coords.json',    'type': 'application/json'},
+    '/coords.json': {'path': 'data/coords.json',  'type': 'application/json'},
 
     '/style.css'  : {'path': 'client/style.css',  'type': 'text/css'},
     '/display.js' : {'path': 'client/display.js', 'type': 'application/javascript'},
@@ -50,14 +50,15 @@ class Handler(BaseHTTPRequestHandler):
 
 try:
     server = HTTPServer(SERVER_ADDRESS, Handler)
-    model = Model()
+    #model = Model()
     print('Started httpserver on port ', PORT_NUMBER)
 
-    model.run_process()
+    #model.run_process()
     abuse = Abuse()
     server.serve_forever()
 
 except KeyboardInterrupt:
     print('^C received, shutting down the web server')
-    model.stop_process()
+    #model.stop_process()
     server.socket.close()
+    abuse.stop_thread()

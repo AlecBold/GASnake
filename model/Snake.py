@@ -190,7 +190,7 @@ class Snake:
         diraR, diraU, diraL, diraD, diraRU, diraRD, diraLU, diraLD = self.direction_to_apple()
         # dsttR, dsttU, dsttL, dsttD = self.distance_to_tale()
         onbwR, onbwU, onbwL, onbwD = self.oneBlockWall()
-        #onbtR, onbtU, onbtL, onbtD = self.oneBlockTale()
+        # onbtR, onbtU, onbtL, onbtD = self.oneBlockTale()
         dirR, dirU, dirL, dirD = self.myDirection()
         self.input = [onbwR, onbwU, onbwL, onbwD, dirR,   dirU,   dirL,   dirD,
                       diraR, diraU, diraL, diraD, diraRU, diraRD, diraLU, diraLD]

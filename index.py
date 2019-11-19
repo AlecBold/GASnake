@@ -1,8 +1,11 @@
 from multiprocessing import Process
 from model import snake_processing
+from os import environ
 import time
 
+PORT_NUMBER = int(environ["PORT"])
 
+"""""""""
 class Model:
     def __init__(self):
         self.proc = Process(target=snake_processing.PlaySnake().execute)
@@ -13,3 +16,16 @@ class Model:
 
     def stop_process(self):
         self.proc.join()
+"""""""""
+
+
+class Model:
+    def __init__(self):
+        train_model = snake_processing.PlaySnake()
+
+
+try:
+    model = Model()
+    print(f'Start model on process: {PORT_NUMBER}')
+except KeyboardInterrupt:
+    print('^C received, shutting down training')

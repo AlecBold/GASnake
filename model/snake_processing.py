@@ -18,6 +18,7 @@ from .Initialize import *
 class PlaySnake:
     def __init__(self):
         self.direct = './data/coords.json'
+        self.generations = 0
         #self.access_to_mongodb()
 
     def create_file(self):
@@ -104,4 +105,7 @@ class PlaySnake:
 
             #self.save_weights_in_db(best_weights)
             self.delete_file()
+
+            self.generations += 1
+            print(f"Generation # -> {self.generations}")
 
