@@ -27,6 +27,7 @@ class Model:
 
 
 try:
+    print(f'Start model on process: {PORT_NUMBER}')
     model = Model()
     print(f'Start model on process: {PORT_NUMBER}')
     #model.run_process()
