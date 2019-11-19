@@ -1,9 +1,10 @@
+from multiprocessing import Process
 from requests import get
 from time import sleep
-from multiprocessing import Process
 
 
 class Abuse:
+
     def __init__(self):
         self.thr = Process(target=self.wait_mode)
         self.thr.start()
