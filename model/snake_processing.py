@@ -19,6 +19,7 @@ class PlaySnake:
 
     def __init__(self):
         self.direct = './data/coords.json'
+        self.coordData = []
         #self.access_to_mongodb()
 
 
