@@ -2,7 +2,7 @@
 
 from os import curdir, sep, environ
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from index import Model
+#from index import Model
 from socket import gethostbyname, gethostname
 from Abuse import Abuse
 
