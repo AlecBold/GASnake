@@ -9,8 +9,7 @@ class Model:
         self.proc = Process(target=snake_processing.PlaySnake().execute)
 
     def run_process(self):
-        PORT_NUMBER = int(environ["PORT"])
-        print(f'Start model on process: {PORT_NUMBER}')
+        print('Start model training')
         self.proc.start()
 
     def stop_process(self):
