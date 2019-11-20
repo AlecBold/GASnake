@@ -4,11 +4,10 @@ from os import curdir, sep, environ
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import index
 from socket import gethostbyname, gethostname
-from Abuse import Abuse
 
 
-IP = gethostbyname(gethostname())
-PORT_NUMBER = int(environ["PORT"])
+IP = 'localhost'
+PORT_NUMBER = 3000
 SERVER_ADDRESS = (IP, PORT_NUMBER)
 
 DUMB_FILE_MAP = {
@@ -54,11 +53,9 @@ try:
     print('Started httpserver on port ', PORT_NUMBER)
 
     model.run_process()
-    abuse = Abuse()
     server.serve_forever()
 
 except KeyboardInterrupt:
     print('^C received, shutting down the web server')
     model.stop_process()
     server.socket.close()
-    abuse.stop_thread()
