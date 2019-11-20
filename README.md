@@ -25,3 +25,6 @@ or
 python serve.py
 ```
 
+# How it looks
+[Snake on heroku](https://gasnake.herokuapp.com/)
+
