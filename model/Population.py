@@ -5,7 +5,6 @@ import random as rd
 import numpy as np
 
 # Importing local modules
-from .func import *
 from .Snake import *
 
 

@@ -82,10 +82,10 @@ class Snake:
         return dirR, dirU, dirL, dirD
 
     def distance_to_wall(self):
-        wall_direction_vector_R = abs(25 - self.snake_position[0][0])
-        wall_direction_vector_U = abs(0 - self.snake_position[0][1])
-        wall_direction_vector_L = abs(0 - self.snake_position[0][0])
-        wall_direction_vector_D = abs(25 - self.snake_position[0][1])
+        wall_direction_vector_R = 24 - self.snake_position[0][0]
+        wall_direction_vector_L = self.snake_position[0][0]
+        wall_direction_vector_D = 24 - self.snake_position[0][1]
+        wall_direction_vector_U = self.snake_position[0][1]
 
         if wall_direction_vector_R > wall_direction_vector_U:  # compute distance to upper right corner
             wall_direction_vector_RU = wall_direction_vector_U / math.cos(45)
@@ -107,54 +107,49 @@ class Snake:
         else:
             wall_direction_vector_LD = wall_direction_vector_L / math.cos(45)
 
-        # Normalize distance for tail
-        wall_direction_vector_R_norm = 1 - wall_direction_vector_R / 25
-        wall_direction_vector_U_norm = 1 - wall_direction_vector_U / 25
-        wall_direction_vector_L_norm = 1 - wall_direction_vector_L / 25
-        wall_direction_vector_D_norm = 1 - wall_direction_vector_D / 25
+        # Normalize distance for wall
+        wall_direction_vector_R_norm = 1 - wall_direction_vector_R / 24
+        wall_direction_vector_U_norm = 1 - wall_direction_vector_U / 24
+        wall_direction_vector_L_norm = 1 - wall_direction_vector_L / 24
+        wall_direction_vector_D_norm = 1 - wall_direction_vector_D / 24
 
-        # NEED TO CHANGE SCALES (DON'T FORGET)
-        wall_direction_vector_RU_norm = 1 - wall_direction_vector_RU / 1700
-        wall_direction_vector_RD_norm = 1 - wall_direction_vector_RD / 1700
-        wall_direction_vector_LU_norm = 1 - wall_direction_vector_LU / 1700
-        wall_direction_vector_LD_norm = 1 - wall_direction_vector_LD / 1700
+        wall_direction_vector_RU_norm = 1 - wall_direction_vector_RU / 46
+        wall_direction_vector_RD_norm = 1 - wall_direction_vector_RD / 46
+        wall_direction_vector_LU_norm = 1 - wall_direction_vector_LU / 46
+        wall_direction_vector_LD_norm = 1 - wall_direction_vector_LD / 46
 
         return wall_direction_vector_R_norm, wall_direction_vector_U_norm, wall_direction_vector_L_norm, wall_direction_vector_D_norm, wall_direction_vector_RU_norm, wall_direction_vector_RD_norm, wall_direction_vector_LU_norm, wall_direction_vector_LD_norm
 
-    def direction_to_apple(self):
-        apple_direction_vector_R = 1
-        apple_direction_vector_U = 1
-        apple_direction_vector_L = 1
-        apple_direction_vector_D = 1
-        apple_direction_vector_RU = 1
-        apple_direction_vector_RD = 1
-        apple_direction_vector_LU = 1
-        apple_direction_vector_LD = 1
+    def distance_to_apple(self):
+        apple_direction_vector_R = 0
+        apple_direction_vector_U = 0
+        apple_direction_vector_L = 0
+        apple_direction_vector_D = 0
+        apple_direction_vector_RU = 0
+        apple_direction_vector_RD = 0
+        apple_direction_vector_LU = 0
+        apple_direction_vector_LD = 0
 
         # Check if apple exist in 8 directions relative to head
 
-        if (self.apple_position[0] - self.snake_position[0][0] < 0) and self.apple_position[1] == self.snake_position[0][1]:
-            apple_direction_vector_L = 0 #- abs(self.apple_position[0] - self.snake_position[0][0]) / 1200
-            #apple_direction_vector_R = 0
-        elif (self.apple_position[0] - self.snake_position[0][0] > 0) and self.apple_position[1] == self.snake_position[0][1]:
-            apple_direction_vector_R = 0 #- abs(self.apple_position[0] - self.snake_position[0][0]) /
-            #apple_direction_vector_L = 0
-        elif (self.apple_position[1] - self.snake_position[0][1] < 0) and self.apple_position[0] == self.snake_position[0][0]:
-            apple_direction_vector_U = 0 #- abs(self.apple_position[1] - self.snake_position[0][1]) / 1200
-            #apple_direction_vector_D = 0
-        elif (self.apple_position[1] - self.snake_position[0][1] > 0) and self.apple_position[0] == self.snake_position[0][0]:
-            apple_direction_vector_D = 0 #- abs(self.apple_position[1] - self.snake_position[0][1]) / 1200
-            #apple_direction_vector_U = 0
+        if ( (self.apple_position[0] - self.snake_position[0][0]) < 0 ) and self.apple_position[1] == self.snake_position[0][1]:
+            apple_direction_vector_L = 1 - abs(self.apple_position[0] - self.snake_position[0][0]) / 25
+        elif ( (self.apple_position[0] - self.snake_position[0][0]) > 0 ) and self.apple_position[1] == self.snake_position[0][1]:
+            apple_direction_vector_R = 1 - abs(self.apple_position[0] - self.snake_position[0][0]) / 25
+        elif ( (self.apple_position[1] - self.snake_position[0][1]) < 0 ) and self.apple_position[0] == self.snake_position[0][0]:
+            apple_direction_vector_U = 1 - abs(self.apple_position[1] - self.snake_position[0][1]) / 25
+        elif ( (self.apple_position[1] - self.snake_position[0][1]) > 0 ) and self.apple_position[0] == self.snake_position[0][0]:
+            apple_direction_vector_D = 1 - abs(self.apple_position[1] - self.snake_position[0][1]) / 25
 
         # 1 if apple on certain diagonal
         elif ((self.apple_position[0] - self.snake_position[0][0]) > 0) and ((self.apple_position[1] - self.snake_position[0][1]) < 0) and (abs(self.snake_position[0][0] - self.apple_position[0]) == abs(self.snake_position[0][1] - self.apple_position[1])):
-            apple_direction_vector_RU = 0
+            apple_direction_vector_RU = 1
         elif ((self.apple_position[0] - self.snake_position[0][0]) > 0) and ((self.apple_position[1] - self.snake_position[0][1]) > 0) and (abs(self.snake_position[0][0] - self.apple_position[0]) == abs(self.snake_position[0][1] - self.apple_position[1])):
-            apple_direction_vector_RD = 0
+            apple_direction_vector_RD = 1
         elif ((self.apple_position[0] - self.snake_position[0][0]) < 0) and ((self.apple_position[1] - self.snake_position[0][1]) < 0) and (abs(self.snake_position[0][0] - self.apple_position[0]) == abs(self.snake_position[0][1] - self.apple_position[1])):
-            apple_direction_vector_LU = 0
+            apple_direction_vector_LU = 1
         elif ((self.apple_position[0] - self.snake_position[0][0]) < 0) and ((self.apple_position[1] - self.snake_position[0][1]) > 0) and (abs(self.snake_position[0][0] - self.apple_position[0]) == abs(self.snake_position[0][1] - self.apple_position[1])):
-            apple_direction_vector_LD = 0
+            apple_direction_vector_LD = 1
 
         return apple_direction_vector_R, apple_direction_vector_U, apple_direction_vector_L, apple_direction_vector_D, apple_direction_vector_RU, apple_direction_vector_RD, apple_direction_vector_LU, apple_direction_vector_LD
 
@@ -186,13 +181,13 @@ class Snake:
         return tail_direction_vector_R, tail_direction_vector_U, tail_direction_vector_L, tail_direction_vector_D
 
     def calcInput(self):
-        # dstwR, dstwU, dstwL, dstwD, dstwRU, dstwRD, dstwLU, dstwLD = self.distance_to_wall()
-        diraR, diraU, diraL, diraD, diraRU, diraRD, diraLU, diraLD = self.direction_to_apple()
+        dstwR, dstwU, dstwL, dstwD, dstwRU, dstwRD, dstwLU, dstwLD = self.distance_to_wall()
+        diraR, diraU, diraL, diraD, diraRU, diraRD, diraLU, diraLD = self.distance_to_apple()
         # dsttR, dsttU, dsttL, dsttD = self.distance_to_tale()
-        onbwR, onbwU, onbwL, onbwD = self.oneBlockWall()
+        # onbwR, onbwU, onbwL, onbwD = self.oneBlockWall()
         # onbtR, onbtU, onbtL, onbtD = self.oneBlockTale()
-        dirR, dirU, dirL, dirD = self.myDirection()
-        self.input = [onbwR, onbwU, onbwL, onbwD, dirR,   dirU,   dirL,   dirD,
+        # dirR, dirU, dirL, dirD = self.myDirection()
+        self.input = [dstwR, dstwU, dstwL, dstwD, dstwRU, dstwRD, dstwLU, dstwLD,
                       diraR, diraU, diraL, diraD, diraRU, diraRD, diraLU, diraLD]
 
     def calcOutput(self):

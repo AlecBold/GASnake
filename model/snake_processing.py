@@ -5,12 +5,9 @@ import json
 import time
 import datetime
 import os
-import pymongo
 
 # Importing local modules
-#from .func import *
 from .Population import *
-from .Snake import *
 from .Initialize import *
 
 
@@ -20,28 +17,19 @@ class PlaySnake:
     def __init__(self):
         self.direct = './data/coords.json'
         self.coordData = []
-        #self.access_to_mongodb()
 
 
     def create_file(self):
         open(self.direct, 'w+')
 
+
     def delete_file(self):
         os.remove(self.direct)
+
 
     def write_to_json(self):
         with open(self.direct, 'w') as file:
             json.dump(self.coordData, file)
-
-
-    def access_to_mongodb(self):
-        client = pymongo.MongoClient("mongodb+srv://AlexMongoDB:<password>@cluster0-p5ad5.mongodb.net/test?retryWrites=true&w=majority")
-        self.db = client.dataSnake
-
-    def save_weights_in_db(self, weights):
-        weights = [arr.tolist() for arr in weights]
-        doc = {'weights': weights, 'date': datetime.datetime.now()}
-        self.db.data_weights.insert_one(doc)
 
 
     def handling_step(self, snake_object):
@@ -118,9 +106,6 @@ class PlaySnake:
 
             # Delete json file
             self.delete_file()
-
-            # Add weights to MongoDB
-            # self.save_weights_in_db(best_weights)
 
             # Translate num of generations
             generations += 1
